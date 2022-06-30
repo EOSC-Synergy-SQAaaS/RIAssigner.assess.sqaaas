@@ -1,0 +1,64 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: 1.7.0-only_im_client
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/RECETOX/RIAssigner:
+      branch: main
+      repo: https://github.com/RECETOX/RIAssigner
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/RECETOX/RIAssigner git:
+        commands:
+        - /usr/bin/env sh .sqa/script.hazy-tomato-weasel.sh
+        container: qc.acc_whiny-pink-dachshund
+  QC.Doc:
+    repos:
+      github.com/RECETOX/RIAssigner find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.scaly-myrtle-dragonfly.sh
+        container: qc.doc_pretty-emerald-tuatara
+      github.com/RECETOX/RIAssigner git:
+        commands:
+        - /usr/bin/env sh .sqa/script.wheezy-aqua-hyena.sh
+        container: qc.doc_gloppy-green-jackal
+      github.com/RECETOX/RIAssigner markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.ready-white-bobcat.sh
+        container: qc.doc_wimpy-cream-moose
+  QC.FAIR:
+    repos:
+      github.com/RECETOX/RIAssigner F-UJI:
+        commands:
+        - /usr/bin/env sh .sqa/script.grumpy-indigo-hyena.sh
+        container: qc.fair_geeky-rose-vulture
+  QC.Lic:
+    repos:
+      github.com/RECETOX/RIAssigner licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.trippy-eggplant-millipede.sh
+        container: qc.lic_snippy-magnolia-pig
+  QC.Sec:
+    repos:
+      github.com/RECETOX/RIAssigner bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.cozy-amethyst-gerbil.sh
+        container: qc.sec_shaggy-lavender-audemer
+  QC.Sty:
+    repos:
+      github.com/RECETOX/RIAssigner flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.skimpy-jade-macaw.sh
+        container: qc.sty_shabby-azure-balinese
+  QC.Ver:
+    repos:
+      github.com/RECETOX/RIAssigner get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.queasy-charcoal-magpie.sh
+        container: qc.ver_fuzzy-periwinkle-donkey
+timeout: 1800
